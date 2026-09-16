@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Tasks - 스마트 할 일 관리</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 앱 헤더 -->
+    <header class="app-header">
+      <div class="header-top">
+        <h1 class="app-title">📝 My Tasks</h1>
+        <span id="todo-count" class="todo-count-badge" aria-live="polite">0개</span>
+      </div>
+
+      <!-- 진행률 바 -->
+      <div class="progress-section">
+        <div class="progress-label">
+          <span class="progress-text">오늘의 진행률</span>
+          <span id="progress-percent" class="progress-percent" aria-live="polite">0%</span>
+        </div>
+        <div class="progress-bar-track" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="할 일 완료 진행률">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <!-- 할 일 입력 폼 -->
+      <form id="todo-form" class="todo-form" novalidate>
+        <div class="input-group">
+          <label for="todo-category" class="visually-hidden">카테고리 선택</label>
+          <select id="todo-category" class="category-select" aria-label="카테고리 선택">
+            <option value="personal">개인</option>
+            <option value="work">업무</option>
+          </select>
+
+          <label for="todo-input" class="visually-hidden">할 일 내용 입력</label>
+          <input
+            type="text"
+            id="todo-input"
+            class="todo-input"
+            placeholder="할 일을 입력하세요 (최대 100자)"
+            autocomplete="off"
+            maxlength="100"
+            aria-describedby="input-error"
+          >
+          <button type="submit" id="add-btn" class="btn btn-primary">추가</button>
+        </div>
+        <!-- 자동 카테고리 감지 피드백 힌트 -->
+        <p id="category-suggest-hint" class="category-suggest-hint hidden" role="status" aria-live="polite"></p>
+        <p id="input-error" class="input-error-msg hidden" role="alert" aria-live="assertive"></p>
+      </form>
+
+      <!-- 카테고리 필터 탭 -->
+      <nav class="filter-nav" aria-label="카테고리 필터링">
+        <div class="filter-buttons" role="tablist">
+          <button type="button" class="filter-btn active" data-filter="all"      role="tab" aria-selected="true" >전체</button>
+          <button type="button" class="filter-btn"        data-filter="personal" role="tab" aria-selected="false">개인</button>
+          <button type="button" class="filter-btn"        data-filter="work"     role="tab" aria-selected="false">업무</button>
+        </div>
+      </nav>
+
+      <!-- 할 일 목록 -->
+      <section class="todo-section">
+        <ul id="todo-list" class="todo-list" aria-live="polite" aria-label="할 일 목록"></ul>
+        <div id="empty-state" class="empty-state hidden" aria-hidden="true">
+          <span class="empty-icon">🌿</span>
+          <p class="empty-text">할 일이 없습니다. 새로운 할 일을 추가해보세요!</p>
+        </div>
+      </section>
+
+      <!-- 하단 요약 바 -->
+      <footer class="todo-footer">
+        <span id="footer-summary" class="footer-summary">진행 중 0개 · 완료 0개</span>
+        <button type="button" id="clear-completed-btn" class="btn btn-ghost-danger">완료 항목 삭제</button>
+      </footer>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
