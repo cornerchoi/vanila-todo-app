@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>웹사이트 핵심 8대 섹션 가이드</title>
+  <style>
+    /* 0. 기본 리셋 & 공통 스타일 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Segoe UI", sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #f8fafc;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background-color: #e0f2fe;
+      color: #0284c7;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #0f172a;
+    }
+    .section-desc {
+      color: #64748b;
+      margin-bottom: 36px;
+      font-size: 0.95rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background-color: #2563eb;
+      color: #ffffff;
+    }
+    .btn-primary:hover {
+      background-color: #1d4ed8;
+    }
+    .btn-outline {
+      background-color: transparent;
+      color: #2563eb;
+      border: 1px solid #2563eb;
+    }
+    .btn-outline:hover {
+      background-color: #eff6ff;
+    }
+
+    /* 1. GNB (Header) */
+    .gnb {
+      position: sticky;
+      top: 0;
+      background-color: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      z-index: 100;
+    }
+    .gnb-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+    }
+    .gnb-logo {
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #0f172a;
+    }
+    .gnb-menu {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .gnb-menu a:hover {
+      color: #2563eb;
+    }
+
+    /* 2. Hero Section */
+    .hero-section {
+      background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+      padding: 90px 0;
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      color: #0f172a;
+    }
+    .hero-subtext {
+      font-size: 1.1rem;
+      color: #475569;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    /* 3. Features */
+    .features-section {
+      padding: 70px 0;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background-color: #ffffff;
+      padding: 28px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+    }
+    .feature-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      color: #0f172a;
+    }
+    .feature-card p {
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    /* 4. Social Proof */
+    .proof-section {
+      background-color: #ffffff;
+      padding: 70px 0;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .quote-card {
+      background-color: #f8fafc;
+      padding: 24px;
+      border-radius: 8px;
+      border-left: 4px solid #2563eb;
+    }
+    .quote-card p {
+      font-style: italic;
+      color: #334155;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+    .quote-author {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #64748b;
+    }
+
+    /* 5. Pricing */
+    .pricing-section {
+      padding: 70px 0;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+    .price-card {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .price-card.highlight {
+      border: 2px solid #2563eb;
+      box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1);
+      position: relative;
+    }
+    .price-tag {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin: 16px 0;
+    }
+    .price-list {
+      list-style: none;
+      text-align: left;
+      font-size: 0.9rem;
+      color: #475569;
+      margin-bottom: 24px;
+    }
+    .price-list li {
+      margin-bottom: 8px;
+      padding-left: 18px;
+      position: relative;
+    }
+    .price-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #2563eb;
+      font-weight: bold;
+    }
+
+    /* 6. FAQ */
+    .faq-section {
+      background-color: #ffffff;
+      padding: 70px 0;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .faq-item {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 18px 0;
+    }
+    .faq-question {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #0f172a;
+      cursor: pointer;
+      list-style: none;
+    }
+    .faq-question::-webkit-details-marker {
+      display: none;
+    }
+    .faq-answer {
+      margin-top: 10px;
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    /* 7. CTA Section */
+    .cta-section {
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 70px 0;
+      text-align: center;
+    }
+    .cta-section .badge {
+      background-color: rgba(255, 255, 255, 0.15);
+      color: #93c5fd;
+    }
+    .cta-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .cta-desc {
+      color: #94a3b8;
+      max-width: 560px;
+      margin: 0 auto 28px;
+      font-size: 0.95rem;
+    }
+
+    /* 8. Footer & FNB */
+    .footer {
+      background-color: #020617;
+      color: #64748b;
+      padding: 36px 0;
+      font-size: 0.85rem;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .fnb {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+    }
+    .fnb a:hover {
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- [1] GNB (Header) -->
+  <header class="gnb">
+    <div class="container gnb-inner">
+      <div class="gnb-logo">GNB (Global Navigation Bar)</div>
+      <nav>
+        <ul class="gnb-menu">
+          <li><a href="#hero">히어로</a></li>
+          <li><a href="#features">기능</a></li>
+          <li><a href="#proof">소셜프루프</a></li>
+          <li><a href="#pricing">가격</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#cta" class="btn btn-primary" style="padding: 6px 14px; font-size: 0.85rem;">CTA 버튼</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- [2] 히어로 섹션 -->
+    <section id="hero" class="hero-section">
+      <div class="container">
+        <span class="badge">Hero Section</span>
+        <h1 class="hero-title">사이트의 첫인상을 결정짓는<br />히어로 섹션 (Hero Section)</h1>
+        <p class="hero-subtext">
+          접속자가 페이지를 열었을 때 스크롤 없이 처음 마주하는 메인 영역입니다. 한 줄 카피와 핵심 CTA 버튼으로 방문자의 시선을 붙잡습니다.
+        </p>
+        <a href="#features" class="btn btn-primary">특징 살펴보기 (주요 CTA)</a>
+      </div>
+    </section>
+
+    <!-- [3] 특징/기능 섹션 -->
+    <section id="features" class="features-section">
+      <div class="container">
+        <span class="badge">Features Section</span>
+        <h2 class="section-title">특징 및 기능 (Features)</h2>
+        <p class="section-desc">서비스나 제품이 제공하는 주요 장점과 기능을 3~4개 카드로 요약해 보여주는 영역입니다.</p>
+        
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>01. 명확한 구조 전달</h3>
+            <p>각 섹션의 정식 명칭을 프롬프트에 사용하면 AI가 불필요한 레이아웃 왜곡 없이 의도대로 코드를 작성합니다.</p>
+          </div>
+          <div class="feature-card">
+            <h3>02. 시맨틱 태그 활용</h3>
+            <p>&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;footer&gt; 등 웹 표준 구조를 자연스럽게 익힐 수 있습니다.</p>
+          </div>
+          <div class="feature-card">
+            <h3>03. 빠른 시각적 피드백</h3>
+            <p>단일 HTML 파일로 구성되어 초보자도 브라우저에서 새로고침만으로 결과물을 즉각 확인할 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [4] 소셜 프루프 섹션 -->
+    <section id="proof" class="proof-section">
+      <div class="container">
+        <span class="badge">Social Proof Section</span>
+        <h2 class="section-title">소셜 프루프 (Social Proof)</h2>
+        <p class="section-desc">사용자 후기, 파트너사 로고, 언론 보도 등을 노출해 방문자의 불안을 줄이고 신뢰를 쌓는 영역입니다.</p>
+        
+        <div class="proof-grid">
+          <div class="quote-card">
+            <p>"용어를 정확하게 짚어주니 AI가 만들어내는 첫 시안의 퀄리티 자체가 완전히 달라졌습니다."</p>
+            <div class="quote-author">- 바이브 코딩 수강생</div>
+          </div>
+          <div class="quote-card">
+            <p>"대시보드 형태든 랜딩페이지든 섹션 이름만 정돈해도 작업 시간이 절반 이하로 줄어듭니다."</p>
+            <div class="quote-author">- 퍼블리싱 멘토</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [5] 가격/플랜 섹션 -->
+    <section id="pricing" class="pricing-section">
+      <div class="container">
+        <span class="badge">Pricing Section</span>
+        <h2 class="section-title">가격 및 플랜 (Pricing)</h2>
+        <p class="section-desc">유료 제품/서비스의 옵션과 비용을 한눈에 비교할 수 있도록 제공하는 테이블 및 카드 영역입니다.</p>
+        
+        <div class="pricing-grid">
+          <div class="price-card">
+            <div>
+              <h3>기본 플랜</h3>
+              <div class="price-tag">무료</div>
+              <ul class="price-list">
+                <li>기본 8대 섹션 가이드 제공</li>
+                <li>단일 HTML/CSS 템플릿</li>
+                <li>커뮤니티 질의응답</li>
+              </ul>
+            </div>
+            <button class="btn btn-outline">무료로 시작하기</button>
+          </div>
+
+          <div class="price-card highlight">
+            <div>
+              <span class="badge" style="background:#dbeafe; color:#1d4ed8;">추천 플랜</span>
+              <h3>프로 플랜</h3>
+              <div class="price-tag">₩29,000 <span style="font-size: 0.9rem; font-weight: normal; color: #64748b;">/월</span></div>
+              <ul class="price-list">
+                <li>기본 플랜의 모든 기능</li>
+                <li>실전 바이브 코딩 프롬프트 50종</li>
+                <li>실시간 1:1 코드 리뷰 멘토링</li>
+              </ul>
+            </div>
+            <button class="btn btn-primary">프로 플랜 선택</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [6] FAQ 섹션 -->
+    <section id="faq" class="faq-section">
+      <div class="container">
+        <span class="badge">FAQ Section</span>
+        <h2 class="section-title">자주 묻는 질문 (FAQ)</h2>
+        <p class="section-desc">방문자가 구매나 가입 전에 가장 궁금해하는 핵심 질문들을 아코디언 형태로 정리합니다.</p>
+        
+        <div>
+          <details class="faq-item" open>
+            <summary class="faq-question">Q. 웹 표준 용어를 쓰면 AI 코딩 결과물이 왜 더 좋아지나요?</summary>
+            <div class="faq-answer">
+              AI 학습 데이터에 'Hero Section', 'GNB', 'Pricing Table'과 같은 용어들이 수많은 고품질 디자인 패턴과 매핑되어 있기 때문에, 추상적인 묘사보다 훨씬 정돈된 CSS 레이아웃을 생성해냅니다.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-question">Q. 자바스크립트 없이도 이런 아코디언 UI를 만들 수 있나요?</summary>
+            <div class="faq-answer">
+              네, HTML 표준 태그인 &lt;details&gt;와 &lt;summary&gt; 태그를 사용하면 별도의 JS 코드 없이도 클릭 시 펼쳐지는 FAQ UI를 완벽하게 구현할 수 있습니다.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- [7] CTA 섹션 -->
+    <section id="cta" class="cta-section">
+      <div class="container">
+        <span class="badge">CTA Section (Call to Action)</span>
+        <h2 class="cta-title">마지막 행동을 촉구하는 영역</h2>
+        <p class="cta-desc">
+          페이지 전체 내용을 다 읽은 사용자가 결정을 내리도록 강력한 문구와 함께 최종 전환 버튼을 배치합니다.
+        </p>
+        <button class="btn btn-primary" onclick="alert('CTA 전환 버튼이 정상 클릭되었습니다!')">지금 바로 수강 신청하기</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- [8] 푸터 (Footer & FNB) -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Footer:</strong> 사업자 정보, 카피라이트, 법적 고지 표기 영역
+        <div style="margin-top: 4px;">&copy; 2026 Vibe Coding Class. All rights reserved.</div>
+      </div>
+      <ul class="fnb">
+        <li><strong>FNB:</strong></li>
+        <li><a href="#">이용약관</a></li>
+        <li><a href="#">개인정보처리방침</a></li>
+        <li><a href="#">고객센터</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
